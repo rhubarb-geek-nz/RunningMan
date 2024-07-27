@@ -8,8 +8,8 @@
 1 TYPELIB "dispsvc.tlb"
 
 1 VERSIONINFO
-	FILEVERSION 1,0,0,0
-	PRODUCTVERSION 1,0,0,0
+	FILEVERSION 1,0,1,0
+	PRODUCTVERSION 1,0,1,0
 	FILEOS VOS__WINDOWS32
 	FILETYPE VFT_APP
 BEGIN
@@ -20,10 +20,10 @@ BEGIN
 			VALUE "CompanyName","Roger Brown\000\000"
 			VALUE "LegalCopyright","Copyright © Roger Brown 2024\000\000"
 			VALUE "ProductName","RunningMan\000\000"
-			VALUE "ProductVersion", "1.0.0.0\000\000"
+			VALUE "ProductVersion", "1.0.1.0\000\000"
 			VALUE "Comments","https://github.com/rhubarb-geek-nz/RunningMan\000\000"
 			VALUE "FileDescription","RunningMan Hello World Server\000\000"
-			VALUE "FileVersion", "1.0.0.0\000\000"
+			VALUE "FileVersion", "1.0.1.0\000\000"
 			VALUE "InternalName","dispsvc\000\000"
 			VALUE "OriginalFilename","RhubarbGeekNzRunningMan.exe\000\000"
 		END

@@ -56,7 +56,7 @@ foreach ($ARCH in $Architectures)
 		exit $LastExitCode
 	}
 
-	$MsiFilename = "dispsvc-$VERSION-$ARCH.msi"
+	$MsiFilename = "rhubarb-geek-nz.RunningMan-$VERSION-$ARCH.msi"
 
 	& "${env:WIX}bin\light.exe" -nologo -cultures:null -out $MsiFilename 'dispsvc.wixobj'
 
@@ -66,7 +66,7 @@ foreach ($ARCH in $Architectures)
 	}
 
 	Remove-Item 'dispsvc.wix*'
-	Remove-Item 'dispsvc*.wixpdb'
+	Remove-Item 'rhubarb-geek-nz.RunningMan-*.wixpdb'
 
 	if ($CertificateThumbprint)
 	{

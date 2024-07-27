@@ -8,7 +8,7 @@ TLBNAME=disptlb
 LIBNAME=RhubarbGeekNzRunningMan
 EXENAME=$(LIBNAME)
 
-all: $(BINDIR) $(BINDIR)\$(EXENAME).exe $(BINDIR)\$(LIBNAME).dll $(BINDIR)\$(APPNAME).exe
+all: $(BINDIR) $(BINDIR)\$(EXENAME).exe $(TLBNAME)\$(BINDIR)\$(LIBNAME).dll $(BINDIR)\$(APPNAME).exe
 
 clean:
 	if exist $(BINDIR) rmdir /q /s $(BINDIR)
@@ -30,9 +30,6 @@ $(BINDIR)\$(APPNAME).exe: $(APPNAME)\$(BINDIR)\$(APPNAME).exe
 
 $(BINDIR)\$(EXENAME).exe: $(SVRNAME)\$(BINDIR)\$(SVRNAME).exe
 	copy $(SVRNAME)\$(BINDIR)\$(SVRNAME).exe $@
-
-$(BINDIR)\$(LIBNAME).dll: $(TLBNAME)\$(BINDIR)\$(LIBNAME).dll
-	copy $(TLBNAME)\$(BINDIR)\$(LIBNAME).dll $@
 
 $(APPNAME)\$(BINDIR)\$(APPNAME).exe:
 	cd $(APPNAME)

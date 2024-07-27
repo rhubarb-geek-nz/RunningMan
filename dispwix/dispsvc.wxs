@@ -17,20 +17,21 @@
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="$(env.PRODUCTPROGFILES)">
         <Directory Id="COMPANYDIR" Name="rhubarb-geek-nz">
-          <Directory Id="INSTALLDIR" Name="RunningMan" />
+          <Directory Id="INSTALLDIR" Name="RunningMan">
+            <Directory Id="INSTALLDIRBIN" Name="$(env.PRODUCTARCH)" />
+          </Directory>
         </Directory>
       </Directory>
     </Directory>
   </Fragment>
   <Fragment>
     <ComponentGroup Id="ProductComponents">
-      <Component Id="cmp49644F99A8DC013BD2FA39270E26C76C" Guid="*" Directory="INSTALLDIR" Win64="$(env.PRODUCTWIN64)">
+      <Component Id="cmp49644F99A8DC013BD2FA39270E26C76C" Guid="*" Directory="INSTALLDIRBIN" Win64="$(env.PRODUCTWIN64)">
         <File Id="fil206829A74DFF7880F64BE9D5C35CFF80" KeyPath="yes" Source="..\bin\$(env.PRODUCTARCH)\RhubarbGeekNzRunningMan.exe">
           <TypeLib Id="{C95C0F6B-3EE3-48AE-8F78-432669B69C48}" Description="RunningMan Hello World Component 1.0 Type Library" HelpDirectory="INSTALLDIR" MajorVersion="1" MinorVersion="0" Language="0">
             <Interface Id="{7798193D-D609-4D4C-935D-1F04B261F346}" Name="IHelloWorld" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
           </TypeLib>
         </File>
-        <RegistryValue Id="reg852b816e97fc40558f6085a82a262f7e" Root="HKLM" Key="SOFTWARE\Classes\CLSID\{A8D9E8E8-EC86-4630-A623-579C9CB505A7}" Name="AppID" Value="{3A6D07ED-E03D-474A-AE6A-BF42293D17F2}" Type="string" Action="write" />
         <RegistryValue Id="regc20ac5fc9e314d5cbf17c7fa18fd6e09" Root="HKLM" Key="SOFTWARE\Classes\RhubarbGeekNz.RunningMan\CLSID" Value="{A8D9E8E8-EC86-4630-A623-579C9CB505A7}" Type="string" Action="write" />
         <RegistryValue Id="AppIdExeName" Root="HKLM" Key="SOFTWARE\Classes\AppID\RhubarbGeekNzRunningMan.exe" Name="AppID" Value="{3A6D07ED-E03D-474A-AE6A-BF42293D17F2}" Type="string" Action="write" />
         <RegistryValue Id="AppIdServiceName" Root="HKLM" Key="SOFTWARE\Classes\AppID\{3A6D07ED-E03D-474A-AE6A-BF42293D17F2}" Name="LocalService" Value="RunningMan" Type="string" Action="write" />

@@ -98,9 +98,10 @@ EXIT %ERRORLEVEL%
 	}
 }
 
-$HERE = $PWD
+[string]$HERE = $PWD
+[int]$HERELEN = $HERE.Length + 1
 
-Get-ChildItem "$HERE\bin" -File -Recurse | ForEach-Object {
+Get-ChildItem "$HERE\disptlb\bin", "$HERE\bin" -File -Recurse | ForEach-Object {
 	$EXE = $_.FullName
 
 	$MACHINE = ( @"
@@ -116,7 +117,7 @@ EXIT %ERRORLEVEL%
 	$MACHINE = $MACHINE.Substring($MACHINE.LastIndexOf(' ')+1)
 
 	New-Object PSObject -Property @{
-		Executable=$EXE;
+		Executable=$EXE.SubString($HERELEN);
 		Machine=$MACHINE;
 		FileVersion=(Get-Item $EXE).VersionInfo.FileVersion;
 		ProductVersion=(Get-Item $EXE).VersionInfo.ProductVersion;
@@ -169,7 +170,7 @@ try
 
 	$Null = New-Item -Path 'base\lib' -Name 'netstandard2.1' -ItemType 'directory'
 
-	Copy-Item 'bin\x86\RhubarbGeekNzRunningMan.dll' 'base\lib\netstandard2.1\RhubarbGeekNzRunningMan.dll'
+	Copy-Item 'disptlb\bin\x86\RhubarbGeekNzRunningMan.dll' 'base\lib\netstandard2.1\RhubarbGeekNzRunningMan.dll'
 
 	& nuget pack 'disptlb\disptlb.nuspec' -BasePath 'base'
 
