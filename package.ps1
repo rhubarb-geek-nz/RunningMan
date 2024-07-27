@@ -168,9 +168,9 @@ try
 
 	$Null = New-Item -Path 'base' -Name 'lib' -ItemType 'directory'
 
-	$Null = New-Item -Path 'base\lib' -Name 'netstandard2.1' -ItemType 'directory'
+	$Null = New-Item -Path 'base\lib' -Name 'netstandard2.0' -ItemType 'directory'
 
-	Copy-Item 'disptlb\bin\x86\RhubarbGeekNzRunningMan.dll' 'base\lib\netstandard2.1\RhubarbGeekNzRunningMan.dll'
+	Copy-Item 'disptlb\bin\x86\RhubarbGeekNzRunningMan.dll' 'base\lib\netstandard2.0\RhubarbGeekNzRunningMan.dll'
 
 	& nuget pack 'disptlb\disptlb.nuspec' -BasePath 'base'
 

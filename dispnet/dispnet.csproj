@@ -5,20 +5,8 @@
     <TargetFrameworks>net481;net6.0-windows</TargetFrameworks>
   </PropertyGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net481' ">
-    <COMReference Include="RhubarbGeekNzRunningMan">
-      <WrapperTool>tlbimp</WrapperTool>
-      <VersionMinor>0</VersionMinor>
-      <VersionMajor>1</VersionMajor>
-      <Guid>c95c0f6b-3ee3-48ae-8f78-432669b69c48</Guid>
-      <Lcid>0</Lcid>
-      <Isolated>false</Isolated>
-      <EmbedInteropTypes>true</EmbedInteropTypes>
-    </COMReference>
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0-windows' ">
-    <PackageReference Include="rhubarb-geek-nz.RunningMan" Version="1.0.1" />
+  <ItemGroup>
+    <PackageReference Include="rhubarb-geek-nz.RunningMan" Version="1.0.2" />
   </ItemGroup>
 
 </Project>

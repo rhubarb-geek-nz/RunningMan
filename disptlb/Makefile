@@ -13,7 +13,7 @@ clean:
 	if exist $(BINDIR) rmdir /q /s $(BINDIR)
 
 $(BINDIR)\$(LIBNAME).dll: $(BINDIR) $(TLBFILE)
-	tlbimp $(TLBFILE) /asmversion:1.0.1.0 /namespace:$(LIBNAME) /machine:Agnostic /out:$@
+	tlbimp $(TLBFILE) /asmversion:1.0.2.0 /namespace:$(LIBNAME) /machine:Agnostic /out:$@
 	if not "$(CertificateThumbprint)"=="" signtool sign /a /sha1 $(CertificateThumbprint) /fd SHA256 /t http://timestamp.digicert.com $@
 
 $(BINDIR) $(OBJDIR):
