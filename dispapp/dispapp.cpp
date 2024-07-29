@@ -13,53 +13,45 @@ int main(int argc, char** argv)
 
 	if (SUCCEEDED(hr))
 	{
-		hr = CoInitializeSecurity(NULL,
-			-1,
-			NULL,
-			NULL,
-			RPC_C_AUTHN_LEVEL_PKT,
-			RPC_C_IMP_LEVEL_IMPERSONATE,
-			NULL,
-			EOAC_NONE,
-			NULL);
+		IUnknown* punk = NULL;
+
+		hr = GetActiveObject(CLSID_CHelloWorld, NULL, &punk);
 
 		if (SUCCEEDED(hr))
 		{
-			IUnknown* punk = NULL;
+			IHelloWorld* helloWorld = NULL;
 
-			hr = GetActiveObject(CLSID_CHelloWorld, NULL, &punk);
+			hr = punk->QueryInterface(IID_IHelloWorld, (void**)&helloWorld);
 
 			if (SUCCEEDED(hr))
 			{
-				IHelloWorld* helloWorld = NULL;
+				hr = CoSetProxyBlanket(helloWorld, RPC_C_AUTHN_DEFAULT, RPC_C_AUTHZ_NONE, NULL, RPC_C_AUTHN_LEVEL_PKT, RPC_C_IMP_LEVEL_IMPERSONATE, NULL, EOAC_NONE);
+			}
 
-				hr = punk->QueryInterface(IID_IHelloWorld, (void**)&helloWorld);
+			if (SUCCEEDED(hr))
+			{
+				int hint = argc > 1 ? atoi(argv[1]) : 1;
+				BSTR result = NULL;
+
+				hr = helloWorld->GetMessage(hint, &result);
 
 				if (SUCCEEDED(hr))
 				{
-					int hint = argc > 1 ? atoi(argv[1]) : 1;
-					BSTR result = NULL;
+					printf("%S\n", result);
 
-					hr = helloWorld->GetMessage(hint, &result);
-
-					if (SUCCEEDED(hr))
+					if (result)
 					{
-						printf("%S\n", result);
-
-						if (result)
-						{
-							SysFreeString(result);
-						}
+						SysFreeString(result);
 					}
-
-					helloWorld->Release();
 				}
 
-				punk->Release();
+				helloWorld->Release();
 			}
 
-			CoUninitialize();
+			punk->Release();
 		}
+
+		CoUninitialize();
 	}
 
 	if (FAILED(hr))
