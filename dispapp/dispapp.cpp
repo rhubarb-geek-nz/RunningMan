@@ -26,26 +26,36 @@ int main(int argc, char** argv)
 			if (SUCCEEDED(hr))
 			{
 				hr = CoSetProxyBlanket(helloWorld, RPC_C_AUTHN_DEFAULT, RPC_C_AUTHZ_NONE, NULL, RPC_C_AUTHN_LEVEL_PKT, RPC_C_IMP_LEVEL_IMPERSONATE, NULL, EOAC_NONE);
-			}
-
-			if (SUCCEEDED(hr))
-			{
-				int hint = argc > 1 ? atoi(argv[1]) : 1;
-				BSTR result = NULL;
-
-				hr = helloWorld->GetMessage(hint, &result);
 
 				if (SUCCEEDED(hr))
 				{
-					printf("%S\n", result);
+					int hint = 1;
 
-					if (result)
+					while (hint < 6)
 					{
-						SysFreeString(result);
-					}
-				}
+						BSTR result = NULL;
 
-				helloWorld->Release();
+						hr = helloWorld->GetMessage(hint, &result);
+
+						if (SUCCEEDED(hr))
+						{
+							printf("%S\n", result);
+
+							if (result)
+							{
+								SysFreeString(result);
+							}
+						}
+						else
+						{
+							break;
+						}
+
+						hint++;
+					}
+
+					helloWorld->Release();
+				}
 			}
 
 			punk->Release();

@@ -134,23 +134,24 @@ if (Test-Path -LiteralPath $PackageZip)
 	Remove-Item -LiteralPath $PackageZip
 }
 
+Copy-Item 'dispzip\setup.ps1' 'bin'
+
 Push-Location 'bin'
 
 try
 {
-	Compress-Archive -LiteralPath $ARCHLIST -DestinationPath "..\$PackageZip"
+	$List = $ARCHLIST, 'setup.ps1' | ForEach-Object { $_ }
+	Compress-Archive -LiteralPath $List -DestinationPath "..\$PackageZip"
 }
 finally
 {
 	Pop-Location
 }
 
-Push-Location
+Push-Location 'dispwix'
 
 try
 {
-	Set-Location 'dispwix'
-
 	Get-ChildItem . -Filter '*.msi' | Remove-Item
 
 	.\package.ps1 -CertificateThumbprint $CertificateThumbprint -Architectures $ARCHLIST
