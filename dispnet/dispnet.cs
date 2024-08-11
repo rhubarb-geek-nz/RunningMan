@@ -6,7 +6,6 @@
 using System;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.ComTypes;
 
 namespace RhubarbGeekNzRunningMan
 {
@@ -73,12 +72,6 @@ namespace RhubarbGeekNzRunningMan
 
         [DllImport("ole32.dll", PreserveSig = false)]
         private static extern void CoInitializeSecurity(IntPtr pVoid, int cAuthSvc, IntPtr asAuthSvc, IntPtr pReserved1, RpcAuthnLevel level, RpcImpLevel impers, IntPtr pAuthList, EoAuthnCap dwCapabilities, IntPtr pReserved3);
-
-        [DllImport("ole32.dll", PreserveSig = false)]
-        private static extern void GetRunningObjectTable(int reserved, out IRunningObjectTable prot);
-
-        [DllImport("ole32.dll", CharSet = CharSet.Unicode, PreserveSig = false)]
-        private static extern void CreateItemMoniker(string delim, string item, out IMoniker ppmk);
 
         [DllImport("oleaut32.dll", PreserveSig = false)]
         private static extern void GetActiveObject(ref Guid rclsid, IntPtr pvReserved, [MarshalAs(UnmanagedType.IUnknown)] out Object ppunk);
