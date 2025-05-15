@@ -3,7 +3,7 @@
  * Licensed under the MIT License.
  ****/
 
-#include<windows.h>
+#include <windows.h>
 #include <dispsvc_h.h>
 
 static OLECHAR globalModuleFileName[260];
